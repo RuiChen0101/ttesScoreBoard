@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>286</width>
-    <height>371</height>
+    <height>321</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="redadd">
+   <widget class="QPushButton" name="redAdd">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -53,7 +53,7 @@
      <string>清除分數</string>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber">
+   <widget class="QLCDNumber" name="radScore">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -66,10 +66,10 @@
      <number>1</number>
     </property>
     <property name="intValue" stdset="0">
-     <number>7</number>
+     <number>0</number>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber_2">
+   <widget class="QLCDNumber" name="blueScore">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -82,7 +82,33 @@
      <number>1</number>
     </property>
     <property name="intValue" stdset="0">
-     <number>7</number>
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>20</y>
+      <width>47</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>紅隊分數</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>20</y>
+      <width>47</width>
+      <height>12</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>藍隊分數</string>
     </property>
    </widget>
   </widget>
