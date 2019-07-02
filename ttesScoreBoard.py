@@ -24,12 +24,6 @@ class AppWindow(QDialog):
         self.fileWrite()
         self.show()
 
-    def __del__(self):
-        os.remove("./redScore.txt")
-        os.remove("./blueScore.txt")
-        os.remove("./redRound.txt")
-        os.remove("./blueRound.txt")
-
     def fileWrite(self):
         open("./redScore.txt","w",encoding="utf-8").write(str(self.redScore))
         open("./blueScore.txt","w",encoding="utf-8").write(str(self.blueScore))
