@@ -2,6 +2,8 @@ session
 dist
 build
 blueScore.txt
+blueRound.txt
 redScore.txt
+redRound.txt
 ttesScoreBoard.spec
 __pycache__

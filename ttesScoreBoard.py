@@ -10,16 +10,17 @@ class AppWindow(QDialog):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.redAdd.clicked.connect(self.redAddClick)
-        self.ui.redAdd_2.clicked.connect(self.redAddClick_2)
+        self.ui.redAddRound.clicked.connect(self.redAddRoundClick)
         self.ui.blueAdd.clicked.connect(self.blueAddClick)
-        self.ui.blueAdd_2.clicked.connect(self.blueAddClick_2)
+        self.ui.blueAddRound.clicked.connect(self.blueAddRoundClick)
         self.ui.scoreClear.clicked.connect(self.scoreClearClick)
+        self.ui.roundClear.clicked.connect(self.roundClearClick)
         self.redScore=0
-        self.redBigScore=0
-        self.redBigScoreTxt="○○"
+        self.redRoundScore=0
+        self.redRoundScoreTxt="○○"
         self.blueScore=0
-        self.blueBigScore=0
-        self.blueBigScoreTxt="○○"
+        self.blueRoundScore=0
+        self.blueRoundScoreTxt="○○"
         self.roundSet=2
         self.fileWrite()
         self.show()
@@ -27,8 +28,8 @@ class AppWindow(QDialog):
     def fileWrite(self):
         open("./redScore.txt","w",encoding="utf-8").write(str(self.redScore))
         open("./blueScore.txt","w",encoding="utf-8").write(str(self.blueScore))
-        open("./redRound.txt","w",encoding="utf-8").write(str(self.redBigScoreTxt))
-        open("./blueRound.txt","w",encoding="utf-8").write(str(self.blueBigScoreTxt))
+        open("./redRound.txt","w",encoding="utf-8").write(str(self.redRoundScoreTxt))
+        open("./blueRound.txt","w",encoding="utf-8").write(str(self.blueRoundScoreTxt))
 
     def redAddClick(self):
         self.redScore+=1
@@ -40,42 +41,49 @@ class AppWindow(QDialog):
         self.ui.blueScore.display(self.blueScore)
         self.fileWrite()
 
-    def redAddClick_2(self):
-        self.redBigScore+=1 if self.redBigScore<self.roundSet else 0
-        self.redBigScoreTxt=""
-        for _ in range(0,self.redBigScore):
-            self.redBigScoreTxt+="●"
-        for _ in range(self.redBigScore,self.roundSet):
-            self.redBigScoreTxt+="○"
-        self.ui.redBig.setText(self.redBigScoreTxt)
-        self.fileWrite()
+    def redAddRoundClick(self):
+        self.redRoundScore+=1 if self.redRoundScore<self.roundSet else 0
+        self.redRoundScoreTxt=""
+        for _ in range(0,self.redRoundScore):
+            self.redRoundScoreTxt+="●"
+        for _ in range(self.redRoundScore,self.roundSet):
+            self.redRoundScoreTxt+="○"
+        self.scoreClearClick()
 
-    def blueAddClick_2(self):
-        self.blueBigScore+=1 if self.blueBigScore<self.roundSet else 0
-        self.blueBigScoreTxt=""
-        for _ in range(0,self.blueBigScore):
-            self.blueBigScoreTxt+="●"
-        for _ in range(self.blueBigScore,self.roundSet):
-            self.blueBigScoreTxt+="○"
-        self.ui.blueBig.setText(self.blueBigScoreTxt)
-        self.fileWrite()
+    def blueAddRoundClick(self):
+        self.blueRoundScore+=1 if self.blueRoundScore<self.roundSet else 0
+        self.blueRoundScoreTxt=""
+        for _ in range(0,self.blueRoundScore):
+            self.blueRoundScoreTxt+="●"
+        for _ in range(self.blueRoundScore,self.roundSet):
+            self.blueRoundScoreTxt+="○"
+        self.scoreClearClick()
 
     def scoreClearClick(self):
-        self.roundSet=int(self.ui.roundSet.toPlainText()) if int(self.ui.roundSet.toPlainText())>=2 else 2
         self.redScore=0
-        self.redBigScore=0
-        self.redBigScoreTxt=""
-        for _ in range(0,self.roundSet):
-            self.redBigScoreTxt+="○"
         self.blueScore=0
-        self.blueBigScore=0
-        self.blueBigScoreTxt=""
-        for _ in range(0,self.roundSet):
-            self.blueBigScoreTxt+="○"
         self.ui.blueScore.display(self.blueScore)
         self.ui.radScore.display(self.redScore)
-        self.ui.redBig.setText(self.redBigScoreTxt)
-        self.ui.blueBig.setText(self.blueBigScoreTxt)
+        self.ui.redRound.setText(self.redRoundScoreTxt)
+        self.ui.blueRound.setText(self.blueRoundScoreTxt)
+        self.fileWrite()
+
+    def roundClearClick(self):
+        self.roundSet=int(self.ui.roundSet.toPlainText()) if int(self.ui.roundSet.toPlainText())>=2 else 2
+        self.redScore=0
+        self.redRoundScore=0
+        self.redRoundScoreTxt=""
+        for _ in range(0,self.roundSet):
+            self.redRoundScoreTxt+="○"
+        self.blueScore=0
+        self.blueRoundScore=0
+        self.blueRoundScoreTxt=""
+        for _ in range(0,self.roundSet):
+            self.blueRoundScoreTxt+="○"
+        self.ui.blueScore.display(self.blueScore)
+        self.ui.radScore.display(self.redScore)
+        self.ui.redRound.setText(self.redRoundScoreTxt)
+        self.ui.blueRound.setText(self.blueRoundScoreTxt)
         self.fileWrite()
 
 if __name__=="__main__":
